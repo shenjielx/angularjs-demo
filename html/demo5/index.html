@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html ng-app="sportsStore">
+<head>
+<title>Sports Store</title>
+<link rel="stylesheet" type="text/css" href="../../bootstrap-3.3.5-dist/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="../../bootstrap-3.3.5-dist/css/bootstrap-theme.css">
+<script type="text/javascript" src="../../angular-1.5.0/angular.js"></script>
+<script type="text/javascript" src="../../angular-1.5.0/angular-route.js"></script>
+<script type="text/javascript">
+    angular.module("sportsStore",["customeFilters","cart","ngRoute"])
+            .config(function($routeProvider){
+                $routeProvider.when("/complete",{
+                    templateUrl:"/html/demo5/views/thankYou.html"
+                });
+                $routeProvider.when("/placeorder",{
+                    templateUrl:"/html/demo5/views/placeOrder.html"
+                });
+                $routeProvider.when("/checkout",{
+                    templateUrl:"/html/demo5/views/checkoutSummary.html"
+                });
+                $routeProvider.when("/products",{
+                    templateUrl:"/html/demo5/views/productList.html"
+                });
+                $routeProvider.otherwise({
+                    templateUrl:"/html/demo5/views/productList.html"
+                });
+            });
+</script>
+<script type="text/javascript" src="js/sportsStore.js"></script>
+<script type="text/javascript" src="js/customeFilters.js"></script>
+<script type="text/javascript" src="js/productListCtroller.js"></script>
+<script type="text/javascript" src="components/cart/cart.js"></script>
+<script type="text/javascript" src="controllers/checkoutController.js"></script>
+</head>
+<body ng-controller="sportsStoreCtrl">
+    <div class="navbar navbar-inverse">
+        <a class="navbar-band" href="#">SPORTS STORE</a>
+        <cart-summary/>
+    </div>
+    <div class="alert alert-danger" ng-show="data.error">
+        Error ({{data.error.status}}). The product data was not loaded.
+        <a href="index.html" class="alert-link">Click here to try again</a>
+    </div>
+    <ng-view />
+</body>
+</html>
